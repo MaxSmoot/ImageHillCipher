@@ -7,7 +7,7 @@
 **Images whose dimensions are > 300x300 will encode/decode slowly when using complex encyprtion**
 
 ### Encoding
-`python3 main.py -e [-c]--image=<image>`
+`python3 main.py -e [-c] --image=<image>`
 This uses the quickest method for generating a random key (uniform key)
 
 This will output, in the same directory: **encoded.tiff** and **key.tiff**

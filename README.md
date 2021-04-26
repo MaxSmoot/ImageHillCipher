@@ -10,11 +10,11 @@
 
 ### Encoding
 `python3 main.py -e [-c] --image=<image>`
-This uses the quickest method for generating a random key (uniform key)
+This uses the quickest method for generating a random key (uniformly applying a single 3x3 key)
 
 This will output, in the same directory: **encoded.tiff** and **key.tiff**
 
-For a more robust encryption (non-uniform key) use `-c` flag, this will output **Complex-encoded.tiff** and **Complex-key.tiff**  
+For a more robust encryption (a unique 3x3 key for each 3x3 set of pixels in the image) use `-c` flag, this will output **Complex-encoded.tiff** and **Complex-key.tiff**  
 
 **Complex key generation takes much longer to compute**
 

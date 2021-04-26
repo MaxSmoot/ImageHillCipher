@@ -26,13 +26,15 @@ This is the key to encode the image with
 '''
 
 
-def generateKey(width, height):
+def generateKey(width, height, complexKey):
     key = np.empty((width, height), dtype="i")
+    subkey = generateSubKey(3)
     i = 0
     j = 0
     while i < width:
         while j < height:
-            subkey = generateSubKey(3)
+            if complexKey:
+                subkey = generateSubKey(3)
             key[i:i+3, j:j+3] = subkey
             j += 3
         i += 3
@@ -45,34 +47,45 @@ Convert a key to the inverse mod 256 for decrypting
 '''
 
 
-def invertKey(key):
+def invertKey(key, complexKey):
     i = 0
     j = 0
+    subkey = np.array(Matrix(key[i:i+3, j:j+3]).inv_mod(256))
     while i < len(key):
         while j < len(key[0]):
-            key[i:i+3, j:j +
-                3] = np.array(Matrix(key[i:i+3, j:j+3]).inv_mod(256))
+            if complexKey:
+                subkey = np.array(Matrix(key[i:i+3, j:j+3]).inv_mod(256))
+            key[i:i+3, j:j+3] = subkey
             j += 3
         i += 3
         j = 0
     return key
 
+
 '''
 Return a single matrix from an image of the key 
 (all the color channels are the same so just extracts one of them)
 '''
+
+
 def extractKey(keyimage):
     return IManip.extractColorChannels(keyimage)["red"]
+
 
 '''
 Encodes an image with a given key
 '''
+
+
 def encodeImage(key, image):
     multiplied = IManip.matrixMultImage(key, image)
     return np.mod(multiplied, 256)
 
+
 '''
 Decodes an image with a given key
 '''
-def decodeImage(key, image):
-    return encodeImage(invertKey(key), image)
+
+
+def decodeImage(key, image, complexKey):
+    return encodeImage(invertKey(key, complexKey), image)

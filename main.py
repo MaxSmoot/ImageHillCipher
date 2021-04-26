@@ -10,14 +10,17 @@ import getopt
 def main(argv):
     encoding = False
     decoding = False
+    complexKey = False
     input_image = None
     key_image = None
-    opts, args = getopt.getopt(argv, "ed", ["key=", "image="])
+    opts, args = getopt.getopt(argv, "edc", ["key=", "image="])
     for opt, arg in opts:
         if(opt == '-e'):
             encoding = True
         elif(opt == "-d"):
             decoding = True
+        elif(opt == "-c"):
+            complexKey = True
         if(opt == "--image"):
             input_image = arg
             if(not (arg.endswith(".jpg") or arg.endswith(".tiff"))):
@@ -34,20 +37,20 @@ def main(argv):
     if(encoding):
         padded_image = IManip.padImage(image_pixels)
         image_pixels = np.array(padded_image)
-        key = Hill.generateKey(len(image_pixels), len(image_pixels[0]))
+        key = Hill.generateKey(len(image_pixels), len(image_pixels[0]), complexKey)
         encodedImage = Hill.encodeImage(key, image_pixels)
         encodedSave = Image.fromarray(np.uint8(encodedImage))
-        encodedSave.save("encoded.tiff", None)
+        encodedSave.save("Complex-encoded.tiff" if complexKey else "encoded.tiff", None)
         key = IManip.combineColorChannels(
             {"red": key, "green": key, "blue": key})
         keySave = Image.fromarray(np.uint8(key))
-        keySave.save("key.tiff", None)
+        keySave.save("Complex-key.tiff" if complexKey else "key.tiff", None)
 
     elif(decoding):
         key_image = Image.open(key_image)
         key_pixels = np.array(key_image)
         key = Hill.extractKey(key_pixels)
-        decodedImage = Hill.decodeImage(key, image_pixels)
+        decodedImage = Hill.decodeImage(key, image_pixels, complexKey)
         decodedImageSave = Image.fromarray(np.uint8(decodedImage))
         decodedImageSave.save("decoded.jpg")
 

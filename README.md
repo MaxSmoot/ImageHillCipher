@@ -11,7 +11,7 @@ This will output, in the same directory: **encoded.tiff** and **key.tiff**
 
 ### Decoding
 `python3 main.py -d --image=<encoded image> --key=<key>`
-This will out, in the same directory: **decoded.jpg**
+This will output, in the same directory: **decoded.jpg**
 
 ## Dependencies
 - python 3

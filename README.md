@@ -3,6 +3,7 @@
 
 ## How To Use
 **Images Must be in the .jpg or .tiff format**
+
 **Images whose dimensions are >300 x >300 will encode/decode slowly**
 ### Encoding
 `python3 main.py -e --image=<image>`

@@ -3,6 +3,24 @@ import numpy as np
 from sympy import Matrix
 
 
+# pad image dimensions divisible by three since cipher keys are 3x3
+def padImage(image_pixels):
+    hlength = len(image_pixels)
+    vlength = len(image_pixels[0])
+    if(hlength % 3 != 0):
+        buffer_col = np.full((1, vlength, 3), 0, dtype="uint8")
+        for i in range(0, 3 - (hlength % 3)):
+            image_pixels = np.vstack((image_pixels, buffer_col))
+            hlength += 1
+    if(vlength % 3 != 0):
+        buffer_row = np.full((hlength, 1, 3), 0, dtype="uint8")
+
+        for i in range(0, 3 - (vlength % 3) - 1):
+            image_pixels = np.hstack((image_pixels, buffer_row))
+            vlength += 1
+    return image_pixels
+
+
 def extractColorChannels(imagearr):
     red_channel = np.empty((len(imagearr), len(imagearr[0])), dtype="i")
     green_channel = np.empty((len(imagearr), len(imagearr[0])), dtype="i")
@@ -18,7 +36,7 @@ def extractColorChannels(imagearr):
 
 def combineColorChannels(imagearr):
     combined = np.empty((len(imagearr["red"]), len(
-        imagearr["red"]), 3))
+        imagearr["red"][0]), 3))
     for i in range(0, len(imagearr["red"])):
         for j in range(0, len(imagearr["red"][0])):
             combined[i, j] = imagearr["red"][i,
@@ -27,14 +45,12 @@ def combineColorChannels(imagearr):
 
 
 def matrixMultImage(key, image):
-
     split_image = extractColorChannels(image)
 
     i = 0
     j = 0
-    size = len(split_image["red"])
-    while(i < size):
-        while(j < size):
+    while(i < len(split_image["red"])):
+        while(j < len(split_image["red"][0])):
             red_chunk = split_image["red"][i:i+3, j:j+3]
             red_chunk = np.matmul(key[i:i+3, j:j+3], red_chunk)
             green_chunk = split_image["green"][i:i+3, j:j+3]
@@ -48,10 +64,3 @@ def matrixMultImage(key, image):
         i += 3
         j = 0
     return combineColorChannels(split_image)
-
-
-def matrixInverseImage(image):
-    split_colors = extractColorChannels(image)
-    inverse_colors = {"red": np.array(Matrix(split_colors["red"]).inv_mod(255)), "green": np.array(Matrix(
-        split_colors["green"]).inv_mod(255)), "blue": np.array(Matrix(split_colors["blue"]).inv_mod(255))}
-    return combineColorChannels(inverse_colors)

@@ -16,12 +16,13 @@ def generateSubKey(sub_size):
     return key
 
 
-def generateKey(size):
-    key = np.empty((size, size), dtype="i")
+def generateKey(width, height):
+    print(width, height)
+    key = np.empty((width, height), dtype="i")
     i = 0
     j = 0
-    while i < size:
-        while j < size:
+    while i < width:
+        while j < height:
             subkey = generateSubKey(3)
             key[i:i+3, j:j+3] = subkey
             j += 3
@@ -33,9 +34,8 @@ def generateKey(size):
 def invertKey(key):
     i = 0
     j = 0
-    size = len(key)
-    while i < size:
-        while j < size:
+    while i < len(key):
+        while j < len(key[0]):
             key[i:i+3, j:j+3] = np.array(Matrix(key[i:i+3, j:j+3]).inv_mod(256))
             j+=3
         i+=3

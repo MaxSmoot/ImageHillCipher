@@ -1,6 +1,7 @@
 import numpy as np
 from sympy import Matrix
 import ImageManip as IManip
+from PIL import Image
 
 '''
 Generate an nxn matrix that is invertible mod 256
@@ -39,17 +40,17 @@ def generateKey(width, height, complexKey):
             j += 3
         i += 3
         j = 0
-    return key
+    key = Image.fromarray(np.uint8(key))
+    return Image.merge('RGB', (key, key, key))
 
 
 '''
 Convert a key to the inverse mod 256 for decrypting
 '''
-
-
 def invertKey(key, complexKey):
     i = 0
     j = 0
+    key = np.array(key.split()[0])
     subkey = np.array(Matrix(key[i:i+3, j:j+3]).inv_mod(256))
     while i < len(key):
         while j < len(key[0]):
@@ -59,7 +60,8 @@ def invertKey(key, complexKey):
             j += 3
         i += 3
         j = 0
-    return key
+    key = Image.fromarray(np.uint8(key))
+    return Image.merge('RGB', (key, key, key))
 
 
 '''
@@ -69,23 +71,20 @@ Return a single matrix from an image of the key
 
 
 def extractKey(keyimage):
-    return IManip.extractColorChannels(keyimage)["red"]
+    return np.array(keyimage.split()[0])
 
 
 '''
 Encodes an image with a given key
 '''
-
-
 def encodeImage(key, image):
     multiplied = IManip.matrixMultImage(key, image)
-    return np.mod(multiplied, 256)
+    multiplied = np.array(multiplied)
+    return Image.fromarray(np.uint8(np.mod(multiplied, 256)))
 
 
 '''
 Decodes an image with a given key
 '''
-
-
 def decodeImage(key, image, complexKey):
     return encodeImage(invertKey(key, complexKey), image)

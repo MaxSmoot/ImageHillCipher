@@ -38,19 +38,13 @@ def main(argv):
         padded_image = IManip.padImage(image_pixels)
         image_pixels = np.array(padded_image)
         key = Hill.generateKey(len(image_pixels), len(image_pixels[0]), complexKey)
-        encodedImage = Hill.encodeImage(key, image_pixels)
-        encodedSave = Image.fromarray(np.uint8(encodedImage))
-        encodedSave.save("Complex-encoded.tiff" if complexKey else "encoded.tiff", None)
-        key = IManip.combineColorChannels(
-            {"red": key, "green": key, "blue": key})
-        keySave = Image.fromarray(np.uint8(key))
-        keySave.save("Complex-key.tiff" if complexKey else "key.tiff", None)
+        encodedImage = Hill.encodeImage(key, padded_image)
+        encodedImage.save("Complex-encoded.tiff" if complexKey else "encoded.tiff", None)
+        key.save("Complex-key.tiff" if complexKey else "key.tiff", None)
 
     elif(decoding):
         key_image = Image.open(key_image)
-        key_pixels = np.array(key_image)
-        key = Hill.extractKey(key_pixels)
-        decodedImage = Hill.decodeImage(key, image_pixels, complexKey)
+        decodedImage = Hill.decodeImage(key_image, input_image, complexKey)
         decodedImageSave = Image.fromarray(np.uint8(decodedImage))
         decodedImageSave.save("decoded.jpg")
 

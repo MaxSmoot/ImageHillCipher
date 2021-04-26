@@ -5,17 +5,6 @@ import HillCipher as Hill
 import ImageManip as IManip
 import sys
 import getopt
-original_image = Image.open('image.jpeg')
-image_pixels = np.array(original_image)
-
-
-def encodeImage(key, image):
-    multiplied = IManip.matrixMultImage(key, image)
-    return np.mod(multiplied, 256)
-
-
-def decodeImage(key, image):
-    return encodeImage(Hill.invertKey(key), image)
 
 
 def main(argv):
@@ -46,7 +35,7 @@ def main(argv):
         padded_image = IManip.padImage(image_pixels)
         image_pixels = np.array(padded_image)
         key = Hill.generateKey(len(image_pixels), len(image_pixels[0]))
-        encodedImage = encodeImage(key, image_pixels)
+        encodedImage = Hill.encodeImage(key, image_pixels)
         encodedSave = Image.fromarray(np.uint8(encodedImage))
         encodedSave.save("encoded.tiff", None)
         key = IManip.combineColorChannels(
@@ -58,7 +47,7 @@ def main(argv):
         key_image = Image.open(key_image)
         key_pixels = np.array(key_image)
         key = Hill.extractKey(key_pixels)
-        decodedImage = decodeImage(key, image_pixels)
+        decodedImage = Hill.decodeImage(key, image_pixels)
         decodedImageSave = Image.fromarray(np.uint8(decodedImage))
         decodedImageSave.save("decoded.jpg")
 

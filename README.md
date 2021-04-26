@@ -4,7 +4,8 @@
 ## How To Use
 **Images Must be in the .jpg or .tiff format**
 
-**Images whose dimensions are >300 x >300 will encode/decode slowly**
+**Images whose dimensions are > 300x300 will encode/decode slowly when using complex encyprtion**
+
 ### Encoding
 `python3 main.py -e --image=<image>`
 This uses the quickest method for generating a random key

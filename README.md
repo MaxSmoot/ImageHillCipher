@@ -6,6 +6,8 @@
 
 **Images whose dimensions are > 300x300 will encode/decode slowly when using complex encyprtion**
 
+**Encoded images will automatically be padded with black to ensure the dimensions are both divisible by 3**
+
 ### Encoding
 `python3 main.py -e [-c] --image=<image>`
 This uses the quickest method for generating a random key (uniform key)

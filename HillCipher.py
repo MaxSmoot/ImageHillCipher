@@ -12,7 +12,7 @@ def generateSubKey(sub_size):
     found = False
     while(not found):
         key = np.array([[np.random.randint(256)
-                         for x in range(0, sub_size)] for y in range(0, sub_size)])
+                         for x in range(0, sub_size)] for y in range(0, sub_size)], dtype="uint8")
         try:
             Matrix(key).inv_mod(256)
             found = True
@@ -28,7 +28,7 @@ This is the key to encode the image with
 
 
 def generateKey(width, height, complexKey):
-    key = np.empty((width, height), dtype="i")
+    key = np.empty((width, height), dtype="uint8")
     subkey = generateSubKey(3)
     i = 0
     j = 0
@@ -40,7 +40,7 @@ def generateKey(width, height, complexKey):
             j += 3
         i += 3
         j = 0
-    key = Image.fromarray(np.uint8(key))
+    key = Image.fromarray(key)
     return Image.merge('RGB', (key, key, key))
 
 

@@ -20,7 +20,7 @@ This will output, in the same directory: **decoded.jpg**
 
 - `--block_size=<int>` The size of the key and the subsize of the image that will be encrypted in blocks (Must be positive, generally anything larger than 15 will take a lot of time). The image will be padded with black to ensure width and length are evenly divisible by the block_size.
 
-- `-c` Will use a unique key for every subsection of the image instead of uniformly applying a single key. **This will massively increase time to compute**
+- `-c` Will use a unique key for every subsection of the image instead of uniformly applying a single key. **This will massively increase time to compute**. Outputs **Complex-encoded-tiff** and **Complex-key.tiff**
 
 ## Dependencies
 - python 3

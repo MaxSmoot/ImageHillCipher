@@ -12,7 +12,7 @@ def generateSubKey(sub_size):
     found = False
     while(not found):
         key = np.array([[np.random.randint(256)
-                         for x in range(0, sub_size)] for y in range(0, sub_size)], dtype="uint8")
+                         for _ in range(0, sub_size)] for _ in range(0, sub_size)], dtype="uint8")
         try:
             Matrix(key).inv_mod(256)
             found = True

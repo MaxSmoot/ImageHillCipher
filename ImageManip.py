@@ -11,12 +11,12 @@ def padImage(image_pixels, padnum):
     vlength = len(image_pixels[0])
     if(hlength % padnum != 0):
         buffer_col = np.full((1, vlength, 3), 0, dtype="uint8")
-        for i in range(0, padnum - (hlength % padnum)):
+        for _ in range(0, padnum - (hlength % padnum)):
             image_pixels = np.vstack((image_pixels, buffer_col))
             hlength += 1
     if(vlength % padnum != 0):
         buffer_row = np.full((hlength, 1, 3), 0, dtype="uint8")
-        for i in range(0, padnum - (vlength % padnum)):
+        for _ in range(0, padnum - (vlength % padnum)):
             image_pixels = np.hstack((image_pixels, buffer_row))
             vlength += 1
     return Image.fromarray(image_pixels)

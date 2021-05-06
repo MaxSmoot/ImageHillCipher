@@ -4,6 +4,12 @@
 ## How To Use
 **Images Must be in the .jpg or .tiff format**
 
+**Example**
+
+`python3 main.py -e --image=test_files/test-large.jpg`
+
+`python3 main.py -d --image=encoded.tiff --key=key.tiff`
+
 ### Encoding
 `python3 main.py -e [-c] [--block_size=<int>] --image=<image>`
 This uses the quickest method for generating a random key (uniformly applying a single 3x3 key)

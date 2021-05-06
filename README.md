@@ -5,8 +5,10 @@
 **Images Must be in the .jpg or .tiff format**
 
 **Example**
+
 **Encrypting**
 `python3 main.py -e --image=test_files/test-large.jpg`
+
 **Decrypting**
 `python3 main.py -d --image=encoded.tiff --key=key.tiff`
 

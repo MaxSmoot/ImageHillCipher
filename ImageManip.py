@@ -4,7 +4,7 @@ from sympy import Matrix
 
 
 '''
-Convert an image to a padded image whose dimensions are both divisible by 3
+Convert an image to a padded image whose dimensions are both divisible by the padnum (block size)
 '''
 def padImage(image_pixels, padnum):
     hlength = len(image_pixels)

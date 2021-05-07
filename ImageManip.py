@@ -27,19 +27,19 @@ Left Multiply 3x3 chunks of the image by corresponding 3x3 chunks of the key
 Multiplies all the color channels by the key then combines to a single matrix
 '''
 def matrixMultImage(key, image, block_size):
-    red,green,blue = image.split()
-    red = np.array(red)
-    green = np.array(green)
-    blue = np.array(blue)
+    colorChannels = image.split()
+    encryptedChannels = []
     key = np.array(key.split()[0])
     i = 0
     j = 0
-    while(i < len(red)):
-        while(j < len(red[0])):
-            red[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], red[i:i+block_size, j:j+block_size])
-            green[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], green[i:i+block_size, j:j+block_size])
-            blue[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], blue[i:i+block_size, j:j+block_size])
-            j += block_size
-        i += block_size
-        j = 0
-    return Image.merge('RGB', (Image.fromarray(red), Image.fromarray(green),Image.fromarray(blue)))
+    for colorChannel in colorChannels:
+        singleChannel = np.array(colorChannel)
+        while(i < len(singleChannel)):
+            while(j < len(singleChannel[0])):
+                singleChannel[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], singleChannel[i:i+block_size, j:j+block_size])
+                j += block_size
+            i += block_size
+            j = 0
+        i = 0
+        encryptedChannels.append(Image.fromarray(singleChannel))
+    return Image.merge('RGB', encryptedChannels)

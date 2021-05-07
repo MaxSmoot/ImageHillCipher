@@ -7,14 +7,18 @@ import getopt
 
 
 def main(argv):
+    #The mode for the program
     encrypting = False
     decrypting = False
+
+    #complexKey, when true, uses a unique block_size x block_size key for each block_size x block_size section of the image
+    #false by default since its computationally expsensive
     complexKey = False
     input_image = None
     key_image = None
-    ##default block size is 3
+    #default block size is 3
+    #size of the key that is tiled to form the key Image
     block_size = 3
-
     try: 
         opts, _ = getopt.getopt(argv, "edcb", ["key=", "image=", "block_size="])
     except Exception as e:
@@ -51,8 +55,9 @@ def main(argv):
         input_image = Image.open(input_image)
         image_pixels = np.array(input_image)
     except Exception as e:
-        print("Error opening image(s)", e)
+        print("Error opening image", e)
         sys.exit()
+
     if(encrypting):
         print("Encrypting... Will output to:", "Complex-encrypted.tiff" if complexKey else "encrypted.tiff",
               "Complex-key.tiff" if complexKey else "key.tiff")
@@ -60,7 +65,7 @@ def main(argv):
         image_pixels = np.array(padded_image)
         key = Hill.generateKey(len(image_pixels), len(
             image_pixels[0]), block_size, complexKey)
-        encodedImage = Hill.encodeImage(key, padded_image, block_size)
+        encodedImage = Hill.encryptImage(key, padded_image, block_size)
         encodedImage.save(
             "Complex-encrypted.tiff" if complexKey else "encrypted.tiff", None)
         key.save("Complex-key.tiff" if complexKey else "key.tiff", None)
@@ -74,10 +79,9 @@ def main(argv):
         except Exception as e:
             print("Error reading key:", e)
             sys.exit()
-        decryptedImage = Hill.decodeImage(
+        decryptedImage = Hill.decryptImage(
             key_image, input_image, block_size, complexKey)
-        decryptedImageSave = Image.fromarray(np.uint8(decryptedImage))
-        decryptedImageSave.save("decrypted.jpg")
+        decryptedImage.save("decrypted.jpg")
         print("Success!")
 
 

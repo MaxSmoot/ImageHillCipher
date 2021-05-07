@@ -1,45 +1,61 @@
 from PIL import Image
 import numpy as np
-from sympy import Matrix
 
+def padImage(image, factor):
+    '''
+    Convert an image to an image padded with black whose dimensions are evenly divisible by factor. If the image is already evenly divisible by factor it returns the original image
 
-'''
-Convert an image to a padded image whose dimensions are both divisible by the padnum (block size)
-'''
-def padImage(image_pixels, padnum):
-    hlength = len(image_pixels)
-    vlength = len(image_pixels[0])
-    if(hlength % padnum != 0):
+    Args:
+        image (PIl Image): Image to pad
+        factor (int): The number the width and height of the image must be evenly divisible by
+
+    Returns:
+        Pil Image: The padded image
+
+    '''
+    hlength = len(image)
+    vlength = len(image[0])
+    if(hlength % factor != 0):
         buffer_col = np.full((1, vlength, 3), 0, dtype="uint8")
-        for _ in range(0, padnum - (hlength % padnum)):
-            image_pixels = np.vstack((image_pixels, buffer_col))
+        for _ in range(0, factor - (hlength % factor)):
+            image = np.vstack((image, buffer_col))
             hlength += 1
-    if(vlength % padnum != 0):
+    if(vlength % factor != 0):
         buffer_row = np.full((hlength, 1, 3), 0, dtype="uint8")
-        for _ in range(0, padnum - (vlength % padnum)):
-            image_pixels = np.hstack((image_pixels, buffer_row))
+        for _ in range(0, factor - (vlength % factor)):
+            image = np.hstack((image, buffer_row))
             vlength += 1
-    return Image.fromarray(image_pixels)
+    return Image.fromarray(image)
 
 
-'''
-Left Multiply 3x3 chunks of the image by corresponding 3x3 chunks of the key
-Multiplies all the color channels by the key then combines to a single matrix
-'''
+
 def matrixMultImage(key, image, block_size):
+    '''
+    Left Multiply 3x3 chunks of the image by corresponding 3x3 chunks of the key.
+    Multiplies all the color channels by the key then combines into an Image.
+
+    Args:
+        key (Pil Image): The key image to multiply image by
+        image (Pil Image): The image to multiply by the key
+        block_size (int): The size of the subkey tiled to form the key image
+
+    Returns:
+        PIl Image: The resulting image from computing key.image
+    ''' 
     colorChannels = image.split()
     encryptedChannels = []
+    #since the key is greyscale we only use a single color channel
     key = np.array(key.split()[0])
     i = 0
     j = 0
     for colorChannel in colorChannels:
-        singleChannel = np.array(colorChannel)
-        while(i < len(singleChannel)):
-            while(j < len(singleChannel[0])):
-                singleChannel[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], singleChannel[i:i+block_size, j:j+block_size])
+        colorChannel = np.array(colorChannel)
+        while(i < len(colorChannel)):
+            while(j < len(colorChannel[0])):
+                colorChannel[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], colorChannel[i:i+block_size, j:j+block_size])
                 j += block_size
             i += block_size
             j = 0
         i = 0
-        encryptedChannels.append(Image.fromarray(singleChannel))
+        encryptedChannels.append(Image.fromarray(colorChannel))
     return Image.merge('RGB', encryptedChannels)

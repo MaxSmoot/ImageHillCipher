@@ -10,7 +10,7 @@
 `python3 main.py -e --image=test_files/test-large.jpg`
 
 **Decrypting**
-`python3 main.py -d --image=encyrpted.tiff --key=key.tiff`
+`python3 main.py -d --image=encrypted.tiff --key=key.tiff`
 
 ### Encrypting
 `python3 main.py -e [-c] [--block_size=<int>] --image=<image>`

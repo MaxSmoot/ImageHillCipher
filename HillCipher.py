@@ -59,7 +59,7 @@ def invertKey(key, block_size, complexKey):
     '''Convert a key to the inverse mod 256 for decrypting
 
     Args:
-        key (PIL Image): The key image to invert
+        key (PIL.Image): The key image to invert
         block_size (int): The size of the keys tiled in the key image (nxn Square key, block_size = n)
         complexKey (bool): Was the key generatedusing the -c flag (non-uniform tiled key)
 
@@ -89,8 +89,8 @@ def encryptImage(key, image, block_size):
     Encodes an image with a given key
 
     Args:
-        key (Pil Image): The key to use for encryption
-        image (Pil Image): The image to encrypt
+        key (PIL.Image): The key to use for encryption
+        image (PIL.Image): The image to encrypt
         block_size (int): The size of the square keys to be tiled 
 
     Returns:
@@ -106,8 +106,8 @@ def decryptImage(key, image, block_size, complexKey):
     Decodes an image with a given key
 
     Args:
-        key (Pil Image): The key used to encrypt the image
-        image (Pil Image): Image to decrypt
+        key (PIL.Image): The key used to encrypt the image
+        image (PIL.Image): Image to decrypt
         block_size (int): size of the subkey tiled to form the key image
         complexKey (bool): Was the image encrypted with the -c flag?
 

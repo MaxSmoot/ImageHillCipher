@@ -6,11 +6,11 @@ def padImage(image, factor):
     Convert an image to an image padded with black whose dimensions are evenly divisible by factor. If the image is already evenly divisible by factor it returns the original image
 
     Args:
-        image (PIl Image): Image to pad
+        image (PIL.Image): Image to pad
         factor (int): The number the width and height of the image must be evenly divisible by
 
     Returns:
-        Pil Image: The padded image
+        PIL.Image: The padded image
 
     '''
     hlength = len(image)
@@ -35,12 +35,12 @@ def matrixMultImage(key, image, block_size):
     Multiplies all the color channels by the key then combines into an Image.
 
     Args:
-        key (Pil Image): The key image to multiply image by
-        image (Pil Image): The image to multiply by the key
+        key (PIL.Image): The key image to multiply image by
+        image (PIL.Image): The image to multiply by the key
         block_size (int): The size of the subkey tiled to form the key image
 
     Returns:
-        PIl Image: The resulting image from computing key.image
+        PIL.Image: The resulting image from computing key.image
     ''' 
     colorChannels = image.split()
     encryptedChannels = []

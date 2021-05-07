@@ -1,5 +1,5 @@
 # ImageHillCipher
-## Encodes and Decodes .jpg images using a Hill Cipher
+## Encrypts and Decrypts .jpg images using a Hill Cipher
 
 ## How To Use
 **Images Must be in the .jpg or .tiff format**

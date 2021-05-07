@@ -24,7 +24,7 @@ This will output, in the same directory: **encrypted.tiff** and **key.tiff**
 This will output, in the same directory: **decrypted.jpg**
 
 
-### Optional Keys (Must match when Encrypting and Decrypting)
+### Optional Args (Must match when Encrypting and Decrypting)
 
 - `--block_size=<int>` The size of the key and the subsize of the image that will be encrypted in blocks (Must be positive, generally anything larger than 15 will take a lot of time). The image will be padded with black to ensure width and length are evenly divisible by the block_size.
 

@@ -4,6 +4,8 @@
 ## How To Use
 **Images Must be in the .jpg or .tiff format**
 
+**Example** 
+
 **Encrypting**
 `python3 main.py -e --image=test_files/test-large.jpg`
 

@@ -1,10 +1,10 @@
-# Introduction
+# Image Hill Cipher
 
 ImageHillCipher is a command-line program that can both encipher and decipher images using a [Hill Cipher](https://www.geeksforgeeks.org/hill-cipher/). ImageHillCipher is written in [Python](https://python.org). This program was developed to demonstrate the versatility of the Hill Cipher with a modern application.
 
-# Dependencies
+## Dependencies
 
-## To Run This Program You Need:
+### To Run This Program You Need:
 
 + [Python 3](https://www.python.org/downloads/)
 + [pip](https://pip.pypa.io/en/stable/installation/)
@@ -12,7 +12,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 + [SymPy](https://www.sympy.org/en/index.html)
 + [NumPy](https://numpy.org/)
 
-## Installation
+### Installation
 
 1. If not already installed, install [Python 3](https://www.python.org/downloads/).
 2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`

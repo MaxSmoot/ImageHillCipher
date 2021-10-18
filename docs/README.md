@@ -74,3 +74,17 @@ Output `enciphered.tiff` and `key.tiff`
 Output `deciphered.jpg`
 
 ![deciphered.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
+
+## FAQS
+
+**Why are the output files when Enciphering .tiff?**
+
++ In order to decipher the image with the key, all the data needs to be intact. JPEGs and PNGs utilize lossy compression so the data is modified and the image is not able to be deciphered. TIFF utilizes a lossless compression so all the data is intact and deciphering is possible.
+
+**Module Not Found Error**
++ Ensure all dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
+
+**Enciphering and Deciphering is taking a very long time**
++ Since this program uses complex linear-algebra operations to encipher and decipher, it is best to use images less than 10 megapixels.
++ If `--block_size` was specified to be larger than 3, the program will take significantly longer. Reccomended to use the defaut `block_size`.
++ If the `-c` flag was specified, the program will take **significantly** longer. Try using a smaller image.

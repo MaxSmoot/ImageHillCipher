@@ -1,4 +1,4 @@
-# ImageHillCipher
+# Image Hill Cipher
 ## Encrypts and Decrypts .jpg images using a Hill Cipher
 
 ## How To Use

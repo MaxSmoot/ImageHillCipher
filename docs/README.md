@@ -51,3 +51,26 @@ If optional arguments are not specified the program uses the quickest method for
 [In the repo directory] ```$ python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]```
 
 The program will output `deciphered.jpg`.
+
+## Example
+
+### Enciphering
+
+`test_files/test-medium.jpg`
+
+![test-medium.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
+
+`$ python3 main.py -e --image=test_files/test-medium.jpg`
+
+Output `enciphered.tiff` and `key.tiff`
+
+![enciphered.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/enciphered.png?raw=true)
+![key.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/key.png?raw=true)
+
+### Deciphering
+
+`$ python3 main.py -d --image=enciphered.tiff --key=key.tiff`
+
+Output `deciphered.tiff`
+
+![deciphered.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)

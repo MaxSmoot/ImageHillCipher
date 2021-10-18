@@ -1,37 +1,52 @@
-# ImageHillCipher
-## Encrypts and Decrypts .jpg images using a Hill Cipher
+# Image Hill Cipher
 
-## How To Use
-**Images Must be in the .jpg or .tiff format**
+ImageHillCipher is a command-line program that can both encipher and decipher images using a [Hill Cipher](https://www.geeksforgeeks.org/hill-cipher/). ImageHillCipher is written in [Python](https://python.org). This program was developed to demonstrate the versatility of the Hill Cipher with a modern application.
 
-**Example** 
+* TOC
+\n
+{:toc}
 
-**Encrypting**
-`python3 main.py -e --image=test_files/test-large.jpg`
-
-**Decrypting**
-`python3 main.py -d --image=encrypted.tiff --key=key.tiff`
-
-### Encrypting
-`python3 main.py -e [-c] [--block_size=<int>] --image=<image>`
-This uses the quickest method for generating a random key (uniformly applying a single 3x3 key)
-
-This will output, in the same directory: **encrypted.tiff** and **key.tiff**
-
-### Decrypting
-
-`python3 main.py -d [-c] [--block_size=<int>] --image=<encrypted image> --key=<key>`
-This will output, in the same directory: **decrypted.jpg**
-
-
-### Optional Flags (Must match when Encrypting and Decrypting)
-
-- `--block_size=<int>` The size of the key and the subsize of the image that will be encrypted in blocks (Must be positive, generally anything larger than 15 will take a lot of time). The image will be padded with black to ensure width and length are evenly divisible by the block_size.
-
-- `-c` Will use a unique key for every subsection of the image instead of uniformly applying a single key. **This will massively increase time to compute**. Outputs **Complex-encrypted-tiff** and **Complex-key.tiff**
 
 ## Dependencies
-- python 3
-- numPy
-- sympy
-- Pillow
+
+### To Run This Program You Need:
+
++ [Python 3](https://www.python.org/downloads/)
++ [pip](https://pip.pypa.io/en/stable/installation/)
++ [Pillow](https://python-pillow.org/)
++ [SymPy](https://www.sympy.org/en/index.html)
++ [NumPy](https://numpy.org/)
++ An image viewer that supports .tiff files.
+
+## Installation
+
+1. If not already installed, install [Python 3](https://www.python.org/downloads/).
+2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`
+3. [**Optional But Recommended**] Create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
+4. Install dependencies
+      - `pip install pillow`
+      - `pip install symPy`
+      - `pip install numPy`
+
+## How To Use
+
+### Required Flags
+
++ `-e` for encipher mode `-d` for decipher mode. Must specify one or the other.
++ `--image=<path_to_image>` This is the path to the image to encipher or decipher.
++ `--key=<path_to_key>` when using `-d`, this is the path to the key to decipher the image with.
+### Optional Flags
++ `--block_size=<positive number>` The size of the key (since the key is square, block_size specifies the length of one of the sides) used for enciphering and deciphering the image. The image will be divided into blocks of size `block_size` and each block will be enciphered or deciphered using the key. When deciphering an image, `block_size` must match the `block_size` specified when enciphering the image. Default `block_size` for enciphering and deciphering is 3.
++ `-c` Program will use a unique key for each `block_size` x `block_size` section of the key instead of tiling the same key. This will massively increase tne time to both encipher and decipher the image. Outputs `complex-enciphered.tiff` and `complex-key.tiff`.
+
+### Enciphering an Image
+
+[In the repo directory] `python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]`
+
+If optional arguments are not specified the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
+
+### Deciphering an Image
+
+[In the repo directory] `python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]`
+
+The program will output `deciphered.jpg`.

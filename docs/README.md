@@ -71,6 +71,6 @@ Output `enciphered.tiff` and `key.tiff`
 
 `$ python3 main.py -d --image=enciphered.tiff --key=key.tiff`
 
-Output `deciphered.tiff`
+Output `deciphered.jpg`
 
 ![deciphered.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)

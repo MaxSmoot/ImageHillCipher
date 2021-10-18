@@ -73,7 +73,7 @@ def main(argv):
         print("Success!")
 
     elif(deciphering):
-        print("Decrypting... Will output to: deciphered.jpg")
+        print("Deciphering... Will output to: deciphered.jpg")
         print("All optional flags must match flags used when enciphering")
         try: 
             key_image = Image.open(key_image)

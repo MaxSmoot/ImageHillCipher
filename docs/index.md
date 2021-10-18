@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+# Introduction
 
-You can use the [editor on GitHub](https://github.com/MaxSmoot/ImageHillCipher/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
+ImageHillCipher is a command-line program that can both encipher and decipher images using a [Hill Cipher](https://www.geeksforgeeks.org/hill-cipher/). ImageHillCipher is written in [Python](https://python.org). This program was developed to demonstrate the versatility of the Hill Cipher with a modern application.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Dependencies
 
-### Markdown
+## To Run This Program You Need:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
++ [Python 3](https://www.python.org/downloads/)
++ [pip](https://pip.pypa.io/en/stable/installation/)
++ [Pillow](https://python-pillow.org/)
++ [SymPy](https://www.sympy.org/en/index.html)
++ [NumPy](https://numpy.org/)
 
-```markdown
-Syntax highlighted code block
+## Installation
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/MaxSmoot/ImageHillCipher/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+1. If not already installed, install [Python 3](https://www.python.org/downloads/).
+2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`
+3. [**Optional But Recommended**] Create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
+4. Install dependencies
+      - `pip install pillow`
+      - `pip install symPy`
+      - `pip install numPy`

@@ -21,7 +21,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 ## Installation
 
 1. If not already installed, install [Python 3](https://www.python.org/downloads/).
-2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`
+2. Clone the repository `$ git clone https://github.com/MaxSmoot/ImageHillCipher`
 3. [**Optional But Recommended**] Create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
 4. Install dependencies
       - ```$ pip install pillow```

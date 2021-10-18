@@ -42,20 +42,20 @@ def matrixMultImage(key, image, block_size):
     Returns:
         PIL.Image: The resulting image from computing key.image
     ''' 
-    colorChannels = image.split()
-    encryptedChannels = []
+    color_channels = image.split()
+    enciphered_channels = []
     #since the key is greyscale we only use a single color channel
     key = np.array(key.split()[0])
     i = 0
     j = 0
-    for colorChannel in colorChannels:
-        colorChannel = np.array(colorChannel)
-        while(i < len(colorChannel)):
-            while(j < len(colorChannel[0])):
-                colorChannel[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], colorChannel[i:i+block_size, j:j+block_size])
+    for color_channel in color_channels:
+        color_channel = np.array(color_channel)
+        while(i < len(color_channel)):
+            while(j < len(color_channel[0])):
+                color_channel[i:i+block_size, j:j+block_size] = np.matmul(key[i:i+block_size, j:j+block_size], color_channel[i:i+block_size, j:j+block_size])
                 j += block_size
             i += block_size
             j = 0
         i = 0
-        encryptedChannels.append(Image.fromarray(colorChannel))
-    return Image.merge('RGB', encryptedChannels)
+        enciphered_channels.append(Image.fromarray(color_channel))
+    return Image.merge('RGB', enciphered_channels)

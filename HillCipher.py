@@ -84,7 +84,7 @@ def invertKey(key, block_size, complexKey):
     return Image.merge('RGB', (key, key, key))
 
 
-def encryptImage(key, image, block_size):
+def encipherImage(key, image, block_size):
     '''
     Encodes an image with a given key
 
@@ -101,7 +101,7 @@ def encryptImage(key, image, block_size):
     return Image.fromarray(np.uint8(np.mod(multiplied, 256)))
 
 
-def decryptImage(key, image, block_size, complexKey):
+def decipherImage(key, image, block_size, complexKey):
     '''
     Decodes an image with a given key
 
@@ -114,4 +114,4 @@ def decryptImage(key, image, block_size, complexKey):
     Returns:
         PIL.Image: Decrypted Image
     '''
-    return encryptImage(invertKey(key, block_size, complexKey), image, block_size)
+    return encipherImage(invertKey(key, block_size, complexKey), image, block_size)

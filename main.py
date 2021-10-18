@@ -8,8 +8,8 @@ import getopt
 
 def main(argv):
     #The mode for the program
-    encrypting = False
-    decrypting = False
+    enciphering = False
+    deciphering = False
 
     #complexKey, when true, uses a unique block_size x block_size key for each block_size x block_size section of the image
     #false by default since its computationally expsensive
@@ -27,9 +27,9 @@ def main(argv):
     
     for opt, arg in opts:
         if(opt == '-e'):
-            encrypting = True
+            enciphering = True
         elif(opt == "-d"):
-            decrypting = True
+            deciphering = True
         elif(opt == "-c"):
             complexKey = True
             print("Warning: Using nonuniform encryption, this will take much longer")
@@ -48,7 +48,7 @@ def main(argv):
             key_image = arg
 
     # must specify one or the other but not both
-    if(encrypting == decrypting):
+    if(enciphering == deciphering):
         print("Error: must specify either -e or -d")
         sys.exit()
     try:
@@ -58,30 +58,31 @@ def main(argv):
         print("Error opening image", e)
         sys.exit()
 
-    if(encrypting):
-        print("Encrypting... Will output to:", "Complex-encrypted.tiff" if complexKey else "encrypted.tiff",
-              "Complex-key.tiff" if complexKey else "key.tiff")
+    if(enciphering):
+        enciphered_filename = "complex-enciphered.tiff" if complexKey else "enciphered.tiff"
+        key_filename = "complex-key.tiff" if complexKey else "key.tiff"
+        print("Enciphering... Will output to:", enciphered_filename, "and", key_filename)
         padded_image = IManip.padImage(image_pixels, block_size)
         image_pixels = np.array(padded_image)
         key = Hill.generateKey(len(image_pixels), len(
             image_pixels[0]), block_size, complexKey)
-        encodedImage = Hill.encryptImage(key, padded_image, block_size)
-        encodedImage.save(
-            "Complex-encrypted.tiff" if complexKey else "encrypted.tiff", None)
-        key.save("Complex-key.tiff" if complexKey else "key.tiff", None)
+        enciphered_image = Hill.encipherImage(key, padded_image, block_size)
+        enciphered_image.save(
+            enciphered_filename, None)
+        key.save(key_filename, None)
         print("Success!")
 
-    elif(decrypting):
-        print("Decrypting... Will output to: Decrypted.jpg")
-        print("All optional flags must match the original encryption")
+    elif(deciphering):
+        print("Decrypting... Will output to: deciphered.jpg")
+        print("All optional flags must match flags used when enciphering")
         try: 
             key_image = Image.open(key_image)
         except Exception as e:
             print("Error reading key:", e)
             sys.exit()
-        decryptedImage = Hill.decryptImage(
+        deciphered_image = Hill.decipherImage(
             key_image, input_image, block_size, complexKey)
-        decryptedImage.save("decrypted.jpg")
+        deciphered_image.save("deciphered.jpg")
         print("Success!")
 
 

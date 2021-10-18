@@ -1,4 +1,4 @@
-# Image Hill Cipher 
+# Image Hill Cipher
 
 + TOC
 

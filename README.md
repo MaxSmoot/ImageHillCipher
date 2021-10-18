@@ -24,9 +24,9 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`
 3. [**Optional But Recommended**] Create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
 4. Install dependencies
-      - `pip install pillow`
-      - `pip install symPy`
-      - `pip install numPy`
+      - ```$ pip install pillow```
+      - ```$ pip install symPy```
+      - ```$ pip install numPy```
 
 ## How To Use
 
@@ -41,12 +41,12 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 
 ### Enciphering an Image
 
-[In the repo directory] `python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]`
+[In the repo directory] ```$ python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]```
 
 If optional arguments are not specified the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
 
 ### Deciphering an Image
 
-[In the repo directory] `python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]`
+[In the repo directory] ```$ python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]```
 
 The program will output `deciphered.jpg`.

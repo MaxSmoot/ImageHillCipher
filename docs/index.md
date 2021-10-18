@@ -11,8 +11,9 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 + [Pillow](https://python-pillow.org/)
 + [SymPy](https://www.sympy.org/en/index.html)
 + [NumPy](https://numpy.org/)
++ An image viewer that supports .tiff files.
 
-### Installation
+## Installation
 
 1. If not already installed, install [Python 3](https://www.python.org/downloads/).
 2. Clone the repository `git clone https://github.com/MaxSmoot/ImageHillCipher`
@@ -21,3 +22,26 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
       - `pip install pillow`
       - `pip install symPy`
       - `pip install numPy`
+
+## How To Use
+
+### Required Flags
+
++ `-e` for encipher mode `-d` for decipher mode. Must use one or the other but not both.
++ `--image=<path_to_image>` path to image to encipher or decipher
++ `--key=<path_to_key>` when using `-d`, path to key to decipher image with
+### Optional Flags
++ `--block_size=<positive number>` The size of the key (square key, block_size specifies length of one of the sides) used for enciphering and deciphering the image. Image will be divided into blocks of size block_size and each block will be enciphered or deciphered using the key. When deciphering an image, block_size must math the block_size specified when enciphering. Default block size for enciphering and deciphering is 3.
++ `-c` Program will use a unique key for each block_size x block_size section of the key instead of tiling the same key. This will massively incrase time to both encipher and decipher the image. Outputs **Complex-encrypted.tiff and Complex-key.tiff**.
+
+### Enciphering an Image
+
+[In the repo directory] `python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]`
+
+This uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `encrypted.tiff and key.tiff`.
+
+### Deciphering an Image
+
+[In the repo directory] `python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]`
+
+This outputs `deciphered.tiff`.

@@ -88,3 +88,9 @@ Output `deciphered.jpg`
 + Since this program uses complex linear-algebra operations to encipher and decipher, it is best to use images less than 10 megapixels.
 + If `--block_size` was specified to be larger than 3, the program will take significantly longer. Reccomended to use the defaut `block_size`.
 + If the `-c` flag was specified, the program will take **significantly** longer. Try using a smaller image.
+
+**How can I view .tiff files**
++ If you are using Windows 10 or newer, the default photo viewer should do the trick. For linux, macOS, or older versions of Windows, I reccomend [LibreOffice Draw](https://www.libreoffice.org/discover/draw/)
+
+**Why does the deciphered image have black bars around it?**
++ Both the height and width of the image being enciphered needs to be evenly divisble by the `block_size`. If the image is not, it will be padded with black pixels to ensure it has compatible dimensions.

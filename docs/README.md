@@ -51,12 +51,13 @@ If the optional arguments are not specified the program uses the quickest method
 [In the repo directory] ```$ python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]```
 
 The program will output `deciphered.jpg`.
+
 -----
 ## Example
 
 ### Enciphering
 
-`test_files/test-medium.jpg`
+test_files/test-medium.jpg`
 
 ![test-medium.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
 
@@ -79,23 +80,25 @@ Output `deciphered.jpg`
 ## FAQS
 
 **Why are the output files when Enciphering .tiff?**
-
-+ In order to decipher the image with the key, all the data needs to be intact. JPEGs and PNGs utilize lossy compression so the data is modified and the image is not able to be deciphered. TIFF utilizes a lossless compression so all the data is intact and deciphering is possible.
+>
+> + In order to decipher the image with the key, all the data needs to be intact. JPEGs and PNGs utilize lossy compression so the data is modified and the image is not able to be deciphered. TIFF utilizes a lossless compression so all the data is intact and deciphering is possible.
 
 **Module Not Found Error**
-+ Ensure all the dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
+> + Ensure all the dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
 
 **Enciphering and Deciphering is taking a very long time**
-+ Since this program uses complex linear-algebra operations to encipher and decipher images, it is best to use images less than 10 megapixels.
-+ If `--block_size` was specified to be larger than 3, the program will take significantly longer. Reccomended to use the defaut `block_size`.
-+ If the `-c` flag was specified, the program will take **significantly** longer to encipher. Try using a smaller image.
+> + Since this program uses complex linear-algebra operations to encipher and decipher images, it is best to use images less than 10 megapixels.
+> + If `--block_size` was specified to be larger than 3, the program will take significantly longer. Reccomended to use the defaut `block_size`.
+> + If the `-c` flag was specified, the program will take **significantly** longer to encipher. Try using a smaller image.
 
 **How can I view .tiff files**
-+ If you are using Windows 10 or newer, the default photo viewer should do the trick. For linux, macOS, or older versions of Windows, I reccomend [LibreOffice Draw](https://www.libreoffice.org/discover/draw/)
+> + If you are using Windows 10 or newer, the default photo viewer should do the trick. For linux, macOS, or older versions of Windows, I reccomend [LibreOffice Draw](https://www.libreoffice.org/discover/draw/)
 
 **Why does the deciphered image have black bars around it?**
-+ Both the height and width of the image being enciphered needs to be evenly divisble by the `block_size`. If the image is not, it will be padded with black pixels to ensure it has compatible dimensions.
+> + Both the height and width of the image being enciphered needs to be evenly divisble by the `block_size`. If the image is not, it will be padded with black pixels to ensure it has compatible dimensions.
+
 -----
+
 ## Troubleshooting
 
 For any issues not covered in the **FAQS** section please create an [issue](https://github.com/MaxSmoot/ImageHillCipher/issues) on the repository.

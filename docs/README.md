@@ -6,7 +6,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 \n
 {:toc}
 
-
+-----
 ## Dependencies
 
 ### To Run This Program You Need:
@@ -17,7 +17,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 + [SymPy](https://www.sympy.org/en/index.html)
 + [NumPy](https://numpy.org/)
 + An image viewer that supports .tiff files.
-
+-----
 ## Installation
 
 1. If Python 3 is not already installed, install [Python 3](https://www.python.org/downloads/).
@@ -27,7 +27,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
       - ```$ pip install pillow```
       - ```$ pip install symPy```
       - ```$ pip install numPy```
-
+-----
 ## How To Use
 
 ### Required Flags
@@ -51,7 +51,7 @@ If the optional arguments are not specified the program uses the quickest method
 [In the repo directory] ```$ python3 main.py -d --image=<path_to_enciphered_image> --key=<path_to_key> [--block_size=<int>] [-c]```
 
 The program will output `deciphered.jpg`.
-
+-----
 ## Example
 
 ### Enciphering
@@ -75,6 +75,7 @@ Output `deciphered.jpg`
 
 ![deciphered.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
 
+-----
 ## FAQS
 
 **Why are the output files when Enciphering .tiff?**
@@ -94,15 +95,17 @@ Output `deciphered.jpg`
 
 **Why does the deciphered image have black bars around it?**
 + Both the height and width of the image being enciphered needs to be evenly divisble by the `block_size`. If the image is not, it will be padded with black pixels to ensure it has compatible dimensions.
-
+-----
 ## Troubleshooting
 
 For any issues not covered in the **FAQS** section please create an [issue](https://github.com/MaxSmoot/ImageHillCipher/issues) on the repository.
 
+-----
 ## How to Contribute?
 
 I appreciate your interest in this project! This project was for a Linear Algebra course and is no longer in development. Feel free to tinker with this code as you please!
 
+-----
 ## Licensing
 
 This project is licensed under the **[MIT License](https://choosealicense.com/licenses/mit/)**

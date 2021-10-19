@@ -48,7 +48,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 
 [In the repo directory] ```$ python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]```
 
-If the optional arguments are not specified the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
+If the optional arguments are not specified, the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
 
 ### Deciphering an Image
 

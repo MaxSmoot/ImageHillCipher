@@ -20,7 +20,7 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 
 ## Installation
 
-1. If not already installed, install [Python 3](https://www.python.org/downloads/).
+1. If Python 3 is not already installed, install [Python 3](https://www.python.org/downloads/).
 2. Clone the repository `$ git clone https://github.com/MaxSmoot/ImageHillCipher`
 3. [**Optional But Recommended**] Create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
 4. Install dependencies
@@ -37,14 +37,14 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 + `--key=<path_to_key>` when using `-d`, this is the path to the key to decipher the image with.
 
 ### Optional Flags
-+ `--block_size=<positive number>` The size of the key (since the key is square, block_size specifies the length of one of the sides) used for enciphering and deciphering the image. The image will be divided into blocks of size `block_size` and each block will be enciphered or deciphered using the key. When deciphering an image, `block_size` must match the `block_size` specified when enciphering the image. Default `block_size` for enciphering and deciphering is 3.
-+ `-c` Program will use a unique key for each `block_size` x `block_size` section of the key instead of tiling the same key. This will massively increase tne time to both encipher and decipher the image. Outputs `complex-enciphered.tiff` and `complex-key.tiff`.
++ `--block_size=<positive number>` The size of the key (since the key is a square, `block_size` specifies the length of one of the sides) used for enciphering and deciphering the image. The image will be divided into blocks of size `block_size` and each block will be enciphered or deciphered using the key. When deciphering an image, `block_size` must match the `block_size` specified when enciphering the image. Default `block_size` for enciphering and deciphering images is 3.
++ `-c` The program will generate a unique key for each `block_size` x `block_size` section of key.tiff instead of tiling the same key. This will massively increase the time to both encipher and decipher the image. Outputs `complex-enciphered.tiff` and `complex-key.tiff`.
 
 ### Enciphering an Image
 
 [In the repo directory] ```$ python3 main.py -e --image=<path_to_image> [--block_size=<int>] [-c]```
 
-If optional arguments are not specified the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
+If the optional arguments are not specified the program uses the quickest method for generating a random key (uniformly applying a single 3x3 key and generating a key image that is that same 3x3 key tiled to match the image dimensions). Outputs `enciphered.tiff and key.tiff`.
 
 ### Deciphering an Image
 
@@ -73,7 +73,7 @@ Output `enciphered.tiff` and `key.tiff`
 
 Output `deciphered.jpg`
 
-![deciphered.tiff](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
+![deciphered.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
 
 ## FAQS
 
@@ -82,15 +82,28 @@ Output `deciphered.jpg`
 + In order to decipher the image with the key, all the data needs to be intact. JPEGs and PNGs utilize lossy compression so the data is modified and the image is not able to be deciphered. TIFF utilizes a lossless compression so all the data is intact and deciphering is possible.
 
 **Module Not Found Error**
-+ Ensure all dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
++ Ensure all the dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
 
 **Enciphering and Deciphering is taking a very long time**
-+ Since this program uses complex linear-algebra operations to encipher and decipher, it is best to use images less than 10 megapixels.
++ Since this program uses complex linear-algebra operations to encipher and decipher images, it is best to use images less than 10 megapixels.
 + If `--block_size` was specified to be larger than 3, the program will take significantly longer. Reccomended to use the defaut `block_size`.
-+ If the `-c` flag was specified, the program will take **significantly** longer. Try using a smaller image.
++ If the `-c` flag was specified, the program will take **significantly** longer to encipher. Try using a smaller image.
 
 **How can I view .tiff files**
 + If you are using Windows 10 or newer, the default photo viewer should do the trick. For linux, macOS, or older versions of Windows, I reccomend [LibreOffice Draw](https://www.libreoffice.org/discover/draw/)
 
 **Why does the deciphered image have black bars around it?**
 + Both the height and width of the image being enciphered needs to be evenly divisble by the `block_size`. If the image is not, it will be padded with black pixels to ensure it has compatible dimensions.
+
+## Troubleshooting
+
+For any issues not covered in the **FAQS** section please create an [issue](https://github.com/MaxSmoot/ImageHillCipher/issues) on the repository.
+
+## How to Contribute?
+
+I appreciate your interest in this project! This project was for a Linear Algebra course and is no longer in development. Feel free to tinker with this code as you please!
+
+## Licensing
+
+This project is licensed under the **[MIT License](https://choosealicense.com/licenses/mit/)**
+

@@ -17,7 +17,9 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
 + [SymPy](https://www.sympy.org/en/index.html)
 + [NumPy](https://numpy.org/)
 + An image viewer that supports .tiff files.
+
 -----
+
 ## Installation
 
 1. If Python 3 is not already installed, install [Python 3](https://www.python.org/downloads/).

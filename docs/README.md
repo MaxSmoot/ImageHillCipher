@@ -61,7 +61,7 @@ The program will output `deciphered.jpg`.
 
 ### Enciphering
 
-test_files/test-medium.jpg`
+`test_files/test-medium.jpg`
 
 ![test-medium.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
 

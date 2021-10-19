@@ -27,7 +27,9 @@ ImageHillCipher is a command-line program that can both encipher and decipher im
       - ```$ pip install pillow```
       - ```$ pip install symPy```
       - ```$ pip install numPy```
+
 -----
+
 ## How To Use
 
 ### Required Flags

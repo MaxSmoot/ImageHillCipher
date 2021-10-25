@@ -1,5 +1,7 @@
 # Image Hill Cipher
 
+## Introduction
+
 ImageHillCipher is a command-line program that can both encipher and decipher images using a [Hill Cipher](https://www.geeksforgeeks.org/hill-cipher/). ImageHillCipher is written in [Python](https://python.org). This program was developed to demonstrate the versatility of the Hill Cipher with a modern application.
 
 * TOC
@@ -81,13 +83,37 @@ Output `deciphered.jpg`
 ![deciphered.jpg](https://github.com/MaxSmoot/ImageHillCipher/blob/main/docs/test-medium.jpg?raw=true)
 
 -----
+
+## Code Example
+
+This is the method that enciphers an image. It is pretty simple. It takes as input an image, a key, and the block_size. It multiplies the image by the key (the image and key are just matrices after all) and then mods the products by 256. This is the basic algorithm for enciphering with a Hill Cipher.
+
+```
+def encipherImage(key, image, block_size):
+    '''
+    Encodes an image with a given key
+
+    Args:
+        key (PIL.Image): The key to use for encryption
+        image (PIL.Image): The image to encrypt
+        block_size (int): The size of the square keys to be tiled 
+
+    Returns:
+        PIL.Image: The encrypted image
+    '''
+    multiplied = IManip.matrixMultImage(key, image, block_size)
+    multiplied = np.array(multiplied)
+    return Image.fromarray(np.uint8(np.mod(multiplied, 256)))
+```
+
+-----
 ## FAQS
 
 **Why are the output files when Enciphering .tiff?**
 > In order to decipher the image with the key, all the data needs to be intact. JPEGs and PNGs utilize lossy compression so the data is modified and the image is not able to be deciphered. TIFF utilizes a lossless compression so all the data is intact and deciphering is possible.
 
 **Module Not Found Error.**
->  Ensure all the dependencies listed in the dependency section are installed. For more information about installing python modules [click here](https://packaging.python.org/tutorials/installing-packages/)
+>  Ensure all the dependencies listed in the dependency section are installed. [More information about installing python modules.](https://packaging.python.org/tutorials/installing-packages/)
 
 **Enciphering and Deciphering is taking a very long time.**
 > Since this program uses complex linear-algebra operations to encipher and decipher images, it is best to use images less than 10 megapixels.
